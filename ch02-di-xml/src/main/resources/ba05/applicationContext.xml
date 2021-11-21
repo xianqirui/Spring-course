@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--声明-->
+
+    <!--3):构造注入(理解)-->
+    <!--使用name属性实现构造注入-->
+    <!--只能引用类型自动注入
+        byName：应用类型id和属性名相同
+        byType:注意只有唯一的bean-->
+    <bean id="myStudent" class="org.example.ba05.Student" autowire="byType"><!--找构造方法-->
+        <property name="name" value="张三"/>
+        <property name="age" value="20"/>
+        <!--<constructor-arg name="myschool" ref="myxuexiao"/>-->
+    </bean>
+    <!--声明Scholl对象-->
+  <!--  <bean id="myschool" class="org.example.ba05.School">
+        <property name="name" value="武汉工程大学"/>
+        <property name="address" value="海淀区"/>
+    </bean>-->
+    <bean id="xschool" class="org.example.ba05.xiaoxueschcshool">
+        <property name="name" value="awda哇大王"/>
+        <property name="address" value="kshse"/>
+    </bean>
+
+    </beans>

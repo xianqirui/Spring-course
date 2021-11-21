@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--class：全限定名称
+        一个bean标签声明一个对象-->
+    <bean id="someService" class="org.example.servlet.SomeServeltlmpl"/>
+    <bean id="someService1" class="org.example.servlet.SomeServeltlmpl"/>
+<!--spring能创建一个已存在的的类的对象
+     -->
+    <bean id="mydads" class="java.util.Date"/>
+
+</beans>
+<!--
+    spring 配置文件
+    beans:spring 把java对象创建为beans
+    xsi:约束文件
+    创建对象时是无参构造方法。，会创建容器里所有的对象
+    -->

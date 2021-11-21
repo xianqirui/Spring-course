@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--声明-->
+    <bean id="myStudent" class="org.example.ba01.Student">
+    <!--
+    1.set注入:赋值
+    1).简单类型：
+    必须有set方法，不然报错
+    只要有set方法就可以赋值
+    -->
+        <property name="name" value="李四"/>
+        <property name="age" value="20"/>
+        <property name="email" value="adad@qq.com"/><!--setEmail("sadad@qq.com")-->
+    </bean>
+    <bean id="Data" class="java.util.Date">
+        <property name="time" value="15649488"/>
+    </bean>
+
+</beans>

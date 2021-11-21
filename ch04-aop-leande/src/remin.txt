@@ -1,0 +1,5 @@
+动态代理在不改变源代码的基础上，额外增加目标功能
+jdk动态代理
+1.创建目标类
+2.创建InvocationHandler
+3.使用jdk中，proxy类

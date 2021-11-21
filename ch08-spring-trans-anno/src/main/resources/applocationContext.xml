@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--导入数据库连接信息-->
+    <context:property-placeholder location="classpath:jdbc.properes"/>
+
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+    <property name="url" value="${jdbc.url}"/>
+        <!--set注入-->
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.passwd}"/>
+        <property name="maxActive" value="${jdbc.maxActive}"/>
+
+    </bean>
+    <!--声明mybatis中的sqlSession类-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+
+        <property name="dataSource" ref="dataSource"/>
+        <!--读取mybatis配置文件-->
+        <property name="configLocation" value="classpath:mybatis.xml"/>
+    </bean>
+    <!--创建dao对象-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--指定sqlsessionFactory的id-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <!--指定dao接口的包名-->
+        <property name="basePackage" value="com.xqr.dao" /><!--包名-->
+    </bean>
+    <!--声明service-->
+    <bean id="BuyGoodsService" class="com.xqr.service.BuyGoodsServiceImpl">
+        <property name="goodsDao" ref="goodsDao"/>
+        <property name="saleDao" ref="saleDao"/>
+    </bean>
+
+    <!--使用spring的事务处理-->
+    <!--1.声明事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--连接的数据库-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--2.开启是事务注解驱动
+            transaction-manager：事务管理器对象的id-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+</beans>
